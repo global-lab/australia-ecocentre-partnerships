@@ -31,8 +31,6 @@
     function select_all() {
         d3.selectAll('circle').on('mouseover', null);
         d3.selectAll('circle').on('mouseout', null);
-        d3.selectAll('rect').on('mouseover', null);
-        d3.selectAll('rect').on('mouseout', null);
         d3.selectAll('circle')
             .attr('fill', d => color[org_types.indexOf(d.data)])
             .attr('fill-opacity', 1)
@@ -42,22 +40,13 @@
             .on('mouseout', function (d) {//bring back stroke width and radius for cur circle
                 mouseout(d, this)
             });
-
-        d3.selectAll('rect')
-            .attr('fill', d => color[org_types.indexOf(d.data.org_type)])
-            .on('mouseover', mouseover_tree)
-            .on('mouseout', mouseout_tree);
         toggle_all_checkboxes(true)
     }
 
     function deselect_all() {
         d3.selectAll('circle')
-            .attr('fill', d => ColorLuminance(color[org_types.indexOf(d.data)].replace("#", ""), darkness));
-
-        d3.selectAll('rect')
-            .attr('fill', d => ColorLuminance(color[org_types.indexOf(d.data.org_type)].replace("#", ""), darkness))
+            .attr('fill', d => ColorLuminance(color[org_types.indexOf(d.data)].replace("#", ""), darkness))
         toggle_all_checkboxes(false)
-
 
     }
 
